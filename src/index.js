@@ -17,6 +17,7 @@ connectDB()
 })
 
 /*
+connecting DB 
 Approach-1
 
 import express from 'express'
