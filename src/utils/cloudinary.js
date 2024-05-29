@@ -15,7 +15,8 @@ const uploadOnCloudinary = async (localFilePath) => {
             resource_type: "auto"
         })
         //file uploaded successfully
-        console.log("File uploaded successfully on Cloudinary", response.url);
+        //console.log("File uploaded successfully on Cloudinary", response.url);
+        fs.unlinkSync(localFilePath);
         return response;
     } catch (error) {
         //remove locally saved temp files as upload failed
@@ -27,3 +28,5 @@ const uploadOnCloudinary = async (localFilePath) => {
 cloudinary.uploader.upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
   { public_id: "olympic_flag" }, 
   function(error, result) {console.log(result); });
+
+export { uploadOnCloudinary }

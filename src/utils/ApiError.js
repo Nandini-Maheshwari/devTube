@@ -15,9 +15,10 @@ class ApiError extends Error { //built in Error class in JS
         if (stack) {
             this.stack = stack 
         } else {
-            Error.captureStackTrace(thos, this.constructor)
+            Error.captureStackTrace(this, this.constructor)
         } // can avoid
     }
 }
 
 export { ApiError }
+    
