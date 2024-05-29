@@ -10,7 +10,8 @@ const registerUser = asyncHandler(async (req, res) => {
     const { fullName, email, username, password } = req.body
     console.log("email: ", email);
 
-    //validation - !empty
+    //--->validation - !empty
+
     // if (fullName === "") {
     //     throw new ApiError(400, "fullName required")
     // }
@@ -60,6 +61,8 @@ const registerUser = asyncHandler(async (req, res) => {
     
     //--->check if user is created
     //--->remove password & refresh token field from response
+
+    //mongodb adds an extra unique field "_id" which serves as an indentifier
     const createdUser = await User.findById(user._id).select(
         "-password -refreshToken"
     )
