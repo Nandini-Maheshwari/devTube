@@ -159,7 +159,7 @@ const logoutUser = asyncHandler(async(req, res) => {
             $set: { refreshToken: undefined }
         },
         {
-            new: true
+            new: true //true returns updated doc, false returns doc before updation
         }
     )
 
@@ -184,8 +184,10 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
     try {
         const decodedToken = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET)
+        //returns payload if token is valid, else error
     
         const user = User.findById(decodedToken?._id)
+        //refer generateRefreshToken function in user.models
     
         if(!user) {
             throw new ApiError(401, "Invalid Refresh Token")
